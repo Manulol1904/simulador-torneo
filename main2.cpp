@@ -6,7 +6,6 @@
 #include <string>
 #include <random>
 #include <algorithm>
-#include <ctime>
 
 struct Equipo {
     std::string nombre;
@@ -57,8 +56,7 @@ std::string ObtenerEstadioAleatorio() {
     "Veltins-Arena"
 };
 
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    static std::mt19937 gen(1);
     std::uniform_int_distribution<int> dist(0, estadios.size() - 1);
     return estadios[dist(gen)];
 }
@@ -191,7 +189,7 @@ std::vector<Equipo> ObtenerGanadoresRonda(const std::vector<Equipo>& equipos) {
 
 int main() {
 
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+    std::srand(1);
 
     // Ruta al archivo de equipos (ajusta la ruta según la ubicación de tu archivo)
     std::string archivoEquipos = "desktop/proyecto c++/equipos2.txt";
@@ -206,7 +204,7 @@ int main() {
         while (std::getline(inputFile, line)) {
             std::istringstream iss(line);
             std::string nombre;
-            double probabilidad_gol;
+            double probabilidad_gol = 0.0;
             iss >> nombre >> probabilidad_gol;
             equipos.push_back({nombre, 0, 0, 0, probabilidad_gol, "", ""});
         }
@@ -217,8 +215,7 @@ int main() {
     }
 
     // Mezclar aleatoriamente el orden de los equipos
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    std::mt19937 gen(1);
     std::shuffle(equipos.begin(), equipos.end(), gen);
 
     // Dividir los equipos en 8 grupos de 4 equipos cada uno

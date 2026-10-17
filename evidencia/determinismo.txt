@@ -1,0 +1,14 @@
+Determinismo del simulador - Fase 1
+Fecha: 2026-10-17
+Semilla: srand(1) y mt19937(1), el mismo valor en el sorteo y en los estadios.
+probabilidad_gol se inicializa en 0.0 antes de leer cada linea.
+
+Dos ejecuciones seguidas de build/simulador.exe, con el directorio de trabajo runtime-data:
+EXIT1=0
+EXIT2=0
+BYTES=7590
+SHA256_1=F777C59C0748B6E14D190A351B863FEFD499C0C23881DE3D6981A8EA5D9A530F
+SHA256_2=F777C59C0748B6E14D190A351B863FEFD499C0C23881DE3D6981A8EA5D9A530F
+IDENTICAS=si
+
+La salida usa fin de linea CRLF (191 lineas) porque el runtime de Windows traduce endl al escribir en una tuberia.
