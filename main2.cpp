@@ -7,6 +7,21 @@
 #include <random>
 #include <algorithm>
 
+constexpr unsigned int kSemilla = 1;
+constexpr int kAnioTorneo = 2006;
+constexpr int kDiasEnero = 31;
+constexpr int kDiasFebrero = 28;
+constexpr int kAnchoFecha = 2;
+constexpr int kMinutosReglamento = 90;
+constexpr int kMinutosProrroga = 30;
+constexpr int kTirosPorEquipo = 5;
+constexpr int kPuntosVictoria = 3;
+constexpr int kPuntosEmpate = 1;
+constexpr int kCantidadGrupos = 8;
+constexpr int kEquiposPorGrupo = 4;
+constexpr int kIndicePrimero = 0;
+constexpr int kIndiceSegundo = 1;
+
 struct Equipo {
     std::string nombre;
     int goles_a_favor;
@@ -21,21 +36,21 @@ struct Equipo {
 std::string ObtenerFecha() {
     static int dia = 1;
     static int mes = 1;
-    static int anno = 2006;
+    static int anno = kAnioTorneo;
 
     // Incrementar la fecha en un día
     dia++;
 
     // Verificar si se ha alcanzado el final de febrero
-    if ((mes == 1 && dia > 31) || (mes == 2 && dia > 28)) {
+    if ((mes == 1 && dia > kDiasEnero) || (mes == 2 && dia > kDiasFebrero)) {
         mes++;
         dia = 1;
     }
 
     // Formatear la fecha
     std::ostringstream fechaStream;
-    fechaStream << std::setw(2) << std::setfill('0') << dia << '/';
-    fechaStream << std::setw(2) << std::setfill('0') << mes << '/';
+    fechaStream << std::setw(kAnchoFecha) << std::setfill('0') << dia << '/';
+    fechaStream << std::setw(kAnchoFecha) << std::setfill('0') << mes << '/';
     fechaStream << anno;
 
     return fechaStream.str();
@@ -56,7 +71,7 @@ std::string ObtenerEstadioAleatorio() {
     "Veltins-Arena"
 };
 
-    static std::mt19937 gen(1);
+    static std::mt19937 gen(kSemilla);
     std::uniform_int_distribution<int> dist(0, estadios.size() - 1);
     return estadios[dist(gen)];
 }
@@ -71,18 +86,18 @@ void SimularPartido(Equipo& equipo1, Equipo& equipo2, bool esEliminacionDirecta)
     int golesEquipo2 = 0;
 
     // Simulación del tiempo reglamentario (90 minutos)
-    for (int minuto = 0; minuto < 90; minuto++) {
+    for (int minuto = 0; minuto < kMinutosReglamento; minuto++) {
         double resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
 
         // Determinar si ocurre un gol para el equipo 1 en este minuto
-        if (resultadoAleatorio < probabilidadGolEquipo1 / 90) {
+        if (resultadoAleatorio < probabilidadGolEquipo1 / kMinutosReglamento) {
             golesEquipo1++;
         }
 
         resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
 
         // Determinar si ocurre un gol para el equipo 2 en este minuto
-        if (resultadoAleatorio < probabilidadGolEquipo2 / 90) {
+        if (resultadoAleatorio < probabilidadGolEquipo2 / kMinutosReglamento) {
             golesEquipo2++;
         }
     }
@@ -92,18 +107,18 @@ void SimularPartido(Equipo& equipo1, Equipo& equipo2, bool esEliminacionDirecta)
         std::cout << "Empate en tiempo reglamentario. Se define en tiempo extra y/o tanda de penales." << std::endl;
 
         // Simulación de tiempo extra (30 minutos)
-        for (int minuto = 0; minuto < 30; minuto++) {
+        for (int minuto = 0; minuto < kMinutosProrroga; minuto++) {
             double resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
 
             // Determinar si ocurre un gol para el equipo 1 en este minuto
-            if (resultadoAleatorio < probabilidadGolEquipo1 / 30) {
+            if (resultadoAleatorio < probabilidadGolEquipo1 / kMinutosProrroga) {
                 golesEquipo1++;
             }
 
             resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
 
             // Determinar si ocurre un gol para el equipo 2 en este minuto
-            if (resultadoAleatorio < probabilidadGolEquipo2 / 30) {
+            if (resultadoAleatorio < probabilidadGolEquipo2 / kMinutosProrroga) {
                 golesEquipo2++;
             }
         }
@@ -116,7 +131,7 @@ void SimularPartido(Equipo& equipo1, Equipo& equipo2, bool esEliminacionDirecta)
             int penalesEquipo1 = 0;
             int penalesEquipo2 = 0;
 
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < kTirosPorEquipo; i++) {
                 double resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
                 if (resultadoAleatorio < probabilidadGolEquipo1) {
                     penalesEquipo1++;
@@ -142,12 +157,12 @@ void SimularPartido(Equipo& equipo1, Equipo& equipo2, bool esEliminacionDirecta)
     equipo2.goles_en_contra += golesEquipo1;
 
     if (golesEquipo1 > golesEquipo2) {
-        equipo1.puntos += 3;  // Equipo 1 gana
+        equipo1.puntos += kPuntosVictoria;  // Equipo 1 gana
     } else if (golesEquipo1 < golesEquipo2) {
-        equipo2.puntos += 3;  // Equipo 2 gana
+        equipo2.puntos += kPuntosVictoria;  // Equipo 2 gana
     } else {
-        equipo1.puntos += 1;  // Empate
-        equipo2.puntos += 1;
+        equipo1.puntos += kPuntosEmpate;  // Empate
+        equipo2.puntos += kPuntosEmpate;
     }
 
     // Actualiza la fecha y el estadio del partido
@@ -199,7 +214,7 @@ bool CompararClasificacionGrupo(const Equipo& a, const Equipo& b) {
 
 int main() {
 
-    std::srand(1);
+    std::srand(kSemilla);
 
     // Ruta al archivo de equipos (ajusta la ruta según la ubicación de tu archivo)
     std::string archivoEquipos = "desktop/proyecto c++/equipos2.txt";
@@ -225,37 +240,36 @@ int main() {
     }
 
     // Mezclar aleatoriamente el orden de los equipos
-    std::mt19937 gen(1);
+    std::mt19937 gen(kSemilla);
     std::shuffle(equipos.begin(), equipos.end(), gen);
 
     // Dividir los equipos en 8 grupos de 4 equipos cada uno
-    int equiposPorGrupo = 4;
-    std::vector<std::vector<Equipo>> grupos(8);
+    std::vector<std::vector<Equipo>> grupos(kCantidadGrupos);
 
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < equiposPorGrupo; j++) {
-            grupos[i].push_back(equipos[i * equiposPorGrupo + j]);
+    for (int i = 0; i < kCantidadGrupos; i++) {
+        for (int j = 0; j < kEquiposPorGrupo; j++) {
+            grupos[i].push_back(equipos[i * kEquiposPorGrupo + j]);
         }
     }
 
     // Simular enfrentamientos entre equipos en cada grupo
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < equiposPorGrupo; j++) {
-            for (int k = j + 1; k < equiposPorGrupo; k++) {
+    for (int i = 0; i < kCantidadGrupos; i++) {
+        for (int j = 0; j < kEquiposPorGrupo; j++) {
+            for (int k = j + 1; k < kEquiposPorGrupo; k++) {
                 SimularPartido(grupos[i][j], grupos[i][k], false);
             }
         }
     }
 
     // Ordenar equipos en cada grupo por puntos (y diferencia de goles en caso de empate en puntos)
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < kCantidadGrupos; i++) {
         std::sort(grupos[i].begin(), grupos[i].end(), CompararClasificacionGrupo);
     }
 
     // Imprimir los equipos clasificados (los 2 primeros de cada grupo) con toda la información
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < kCantidadGrupos; i++) {
         std::cout << "Clasificados del Grupo " << (i + 1) << ":" << std::endl;
-        for (int j = 0; j < 4; j++) {
+        for (int j = 0; j < kEquiposPorGrupo; j++) {
             Equipo& equipo = grupos[i][j];
             int diferenciaGoles = CalcularDiferenciaGoles(equipo);
             std::cout << "Equipo: " << equipo.nombre << " - Puntos: " << equipo.puntos << " GA: " << equipo.goles_a_favor << " GC: " << equipo.goles_en_contra << " Dif. Goles: " << diferenciaGoles;
@@ -267,9 +281,9 @@ int main() {
     // Clasificación a la siguiente fase
     std::vector<Equipo> equiposClasificados;
 
-    for (int i = 0; i < 8; i++) {
-        equiposClasificados.push_back(grupos[i][0]);
-        equiposClasificados.push_back(grupos[i][1]);
+    for (int i = 0; i < kCantidadGrupos; i++) {
+        equiposClasificados.push_back(grupos[i][kIndicePrimero]);
+        equiposClasificados.push_back(grupos[i][kIndiceSegundo]);
     }
 
     // Fase de Eliminación Directa
@@ -289,11 +303,11 @@ int main() {
 
     // Tercer y Cuarto Puesto
     std::cout << "------ Partido por el Tercer y Cuarto Puesto ------" << std::endl;
-    SimularPartido(ganadoresCuartos[1], ganadoresCuartos[0], true);
+    SimularPartido(ganadoresCuartos[kIndiceSegundo], ganadoresCuartos[kIndicePrimero], true);
 
     // Final
     std::cout << "------ Final ------" << std::endl;
-    SimularPartido(ganadoresSemifinales[0], ganadoresSemifinales[1], true);
+    SimularPartido(ganadoresSemifinales[kIndicePrimero], ganadoresSemifinales[kIndiceSegundo], true);
 
     return 0;
 }
