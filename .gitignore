@@ -1,0 +1,30 @@
+# Directorios de compilacion
+build/
+out/
+cmake-build-*/
+
+# Binarios y objetos
+*.exe
+*.obj
+*.o
+*.ilk
+*.pdb
+
+# Cobertura
+*.gcda
+*.gcno
+*.gcov
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+Testing/
+
+# Copia local para la ruta hardcodeada del programa original
+runtime-data/
+
+# IDE
+.vs/
+.vscode/

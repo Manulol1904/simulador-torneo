@@ -1,0 +1,33 @@
+Colombia 0.7
+Argentina 0.8
+Arabia Saudita 0.4
+Australia 0.4
+Brasil 0.9
+Costa de Marfil 0.6
+Camerún 0.5
+Corea del Sur 0.4
+Costa Rica 0.4
+Croacia 0.6
+Ecuador 0.5
+España 0.7
+Francia 0.8
+Ghana 0.6
+Inglaterra 0.7
+Irán 0.4
+Italia 0.7
+Japón 0.5
+México 0.6
+Países Bajos 0.8
+Paraguay 0.6
+Polonia 0.6
+Portugal 0.7
+República Checa 0.6
+Serbia y Montenegro 0.5
+Suecia 0.6
+Suiza 0.5
+Togo 0.4
+Túnez 0.4
+Trinidad y Tobago 0.4
+Ucrania 0.6
+Estados Unidos 0.6
+
