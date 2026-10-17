@@ -1,0 +1,57 @@
+Verificacion de entorno - Fase 0A
+Fecha: 2026-10-17
+Sistema: Microsoft Windows 11 Pro 64-bit (10.0.26300)
+Shell: PowerShell
+Gestor de paquetes: winget 1.29.380
+WSL: no instalado
+Valgrind: no disponible en Windows nativo
+
+Ruta anadida al PATH de usuario:
+- C:\msys64\ucrt64\bin
+- C:\Users\manul\AppData\Roaming\Python\Python312\Scripts
+
+HERRAMIENTAS OBLIGATORIAS
+git                 SI    git version 2.54.0.windows.1
+user.name           SI    Manuel Lozano
+user.email          SI    109570388+Manulol1904@users.noreply.github.com
+g++ (C++17)         SI    g++.exe (Rev6, Built by MSYS2 project) 16.2.0
+cmake               SI    cmake version 4.4.4
+ninja               SI    1.13.2 (MSYS2 UCRT64; el ninja de pip queda detras en el PATH)
+cppcheck            SI    Cppcheck 2.21.0
+gcov                SI    gcov (Rev6, Built by MSYS2 project) 16.2.0
+gcovr               SI    gcovr 8.7
+lcov                NO    alternativa justificada: gcovr (no requiere Perl ni WSL)
+Python 3            SI    Python 3.12.10
+pip                 SI    pip 25.0.1
+LaTeX               NO    pendiente hasta la Fase 8 (MiKTeX)
+
+HERRAMIENTAS RECOMENDADAS
+clang++             SI    clang version 23.1.3
+clang-tidy          SI    LLVM version 23.1.3
+lizard              SI    1.24.1
+gh                  SI    gh version 2.102.0 (2026-09-30)
+gh auth             NO    sin sesion. En la Fase 0B: gh auth login
+
+ANALISIS DINAMICO (sanitizers / valgrind)
+- Valgrind: no existe para este Windows.
+- g++ -fsanitize=address,undefined: la compilacion falla al enlazar.
+  ld.exe: cannot find -lasan
+  ld.exe: cannot find -lubsan
+  MSYS2 UCRT64 GCC 16.2.0 no distribuye libasan ni libubsan
+  (el paquete mingw-w64-ucrt-x86_64-compiler-rt solo trae builtins, profile y fuzzer).
+- clang++ -fsanitize=address,undefined: tambien falla.
+  ld: cannot find libclang_rt.asan_dynamic.dll.a
+- Alternativa que SI quedo verificada para el criterio de herramienta dinamica:
+  cobertura con g++ --coverage + gcov + gcovr. Instrumenta el binario y mide
+  la ejecucion real. Es la herramienta dinamica del informe.
+
+PRUEBA DE HUMO (directorio temporal, no forma parte del repositorio)
+1) CMake + Ninja + g++ C++17
+   Comando: cmake -S humo -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=g++
+   Resultado: humo.exe imprime "hola mundo mantenimiento". EXITO.
+2) Cobertura
+   Flags: --coverage -g -O0
+   Resultado: gcov reporta Lines executed:100.00% of 3. EXITO.
+3) Sanitizers
+   Resultado: FALLO de enlace, documentado arriba. No bloquea el resto del proceso
+   porque la cobertura dinamica queda operativa.
