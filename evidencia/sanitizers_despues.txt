@@ -1,0 +1,21 @@
+Analisis dinamico con sanitizers despues de la refactorizacion
+Fecha: 2026-10-17
+Valgrind no esta disponible. Se intenta el enlace con AddressSanitizer y UBSan.
+
+=== enlace g++ ===
+g++ -std=c++17 -fsanitize=address,undefined -g simulador.cpp main.cpp -o evidencia/simulador_san.exe
+C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: cannot find -lasan: No such file or directory
+C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: cannot find -lubsan: No such file or directory
+collect2.exe: error: ld returned 1 exit status
+
+EXIT=1
+
+=== enlace clang++ ===
+clang++ -std=c++17 -fsanitize=address,undefined -g simulador.cpp main.cpp -o evidencia/simulador_san_clang.exe
+C:/msys64/ucrt64/bin/ld: cannot find C:/msys64/ucrt64/lib/clang/23/lib/x86_64-w64-windows-gnu/libclang_rt.asan_dynamic.dll.a: No such file or directory
+C:/msys64/ucrt64/bin/ld: cannot find C:/msys64/ucrt64/lib/clang/23/lib/x86_64-w64-windows-gnu/libclang_rt.asan_dynamic.dll.a: No such file or directory
+C:/msys64/ucrt64/bin/ld: cannot find C:/msys64/ucrt64/lib/clang/23/lib/x86_64-w64-windows-gnu/libclang_rt.asan_dynamic_runtime_thunk.a: No such file or directory
+C:/msys64/ucrt64/bin/ld: cannot find C:/msys64/ucrt64/lib/clang/23/lib/x86_64-w64-windows-gnu/libclang_rt.asan_dynamic_runtime_thunk.a: No such file or directory
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+
+EXIT=1

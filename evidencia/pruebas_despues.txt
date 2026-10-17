@@ -1,0 +1,49 @@
+Running main() from C:/Users/manul/OneDrive/Desktop/proyectos/simulador-torneo/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 10 tests from 7 test suites.
+[----------] Global test environment set-up.
+[----------] 2 tests from CalcularDiferenciaGoles
+[ RUN      ] CalcularDiferenciaGoles.RestaFavorMenosContra
+[       OK ] CalcularDiferenciaGoles.RestaFavorMenosContra (0 ms)
+[ RUN      ] CalcularDiferenciaGoles.PermiteNegativaYCero
+[       OK ] CalcularDiferenciaGoles.PermiteNegativaYCero (0 ms)
+[----------] 2 tests from CalcularDiferenciaGoles (0 ms total)
+
+[----------] 3 tests from Puntos
+[ RUN      ] Puntos.EmpateCuandoNoHayProbabilidadDeGol
+[       OK ] Puntos.EmpateCuandoNoHayProbabilidadDeGol (0 ms)
+[ RUN      ] Puntos.VictoriaDelPrimeroConSemillaFija
+[       OK ] Puntos.VictoriaDelPrimeroConSemillaFija (0 ms)
+[ RUN      ] Puntos.DerrotaDelPrimeroConSemillaFija
+[       OK ] Puntos.DerrotaDelPrimeroConSemillaFija (0 ms)
+[----------] 3 tests from Puntos (0 ms total)
+
+[----------] 1 test from Penales
+[ RUN      ] Penales.EmpateEnCeroSigueEmpatado
+[       OK ] Penales.EmpateEnCeroSigueEmpatado (0 ms)
+[----------] 1 test from Penales (0 ms total)
+
+[----------] 1 test from ObtenerFecha
+[ RUN      ] ObtenerFecha.ConservaAnio2006YAvanza
+[       OK ] ObtenerFecha.ConservaAnio2006YAvanza (0 ms)
+[----------] 1 test from ObtenerFecha (0 ms total)
+
+[----------] 1 test from ClasificacionGrupo
+[ RUN      ] ClasificacionGrupo.OrdenaPorPuntosDiferenciaYGoles
+[       OK ] ClasificacionGrupo.OrdenaPorPuntosDiferenciaYGoles (0 ms)
+[----------] 1 test from ClasificacionGrupo (0 ms total)
+
+[----------] 1 test from GanadoresRonda
+[ RUN      ] GanadoresRonda.ComparaGolesAcumuladosYEnEmpateEligeAlSegundo
+[       OK ] GanadoresRonda.ComparaGolesAcumuladosYEnEmpateEligeAlSegundo (0 ms)
+[----------] 1 test from GanadoresRonda (0 ms total)
+
+[----------] 1 test from GoldenMaster
+[ RUN      ] GoldenMaster.RepiteLaSalidaOriginal
+[       OK ] GoldenMaster.RepiteLaSalidaOriginal (212 ms)
+[----------] 1 test from GoldenMaster (212 ms total)
+
+[----------] Global test environment tear-down
+[==========] 10 tests from 7 test suites ran. (214 ms total)
+[  PASSED  ] 10 tests.
+
+TEST_EXIT=0
