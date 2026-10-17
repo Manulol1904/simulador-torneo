@@ -1,5 +1,6 @@
 # Directorios de compilacion
 build/
+build-cov/
 out/
 cmake-build-*/
 
