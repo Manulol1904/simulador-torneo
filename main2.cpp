@@ -187,6 +187,16 @@ std::vector<Equipo> ObtenerGanadoresRonda(const std::vector<Equipo>& equipos) {
     return ganadores;
 }
 
+bool CompararClasificacionGrupo(const Equipo& a, const Equipo& b) {
+    if (a.puntos == b.puntos) {
+        if (CalcularDiferenciaGoles(a) == CalcularDiferenciaGoles(b)) {
+            return a.goles_a_favor > b.goles_a_favor;
+        }
+        return CalcularDiferenciaGoles(a) > CalcularDiferenciaGoles(b);
+    }
+    return a.puntos > b.puntos;
+}
+
 int main() {
 
     std::srand(1);
@@ -239,15 +249,7 @@ int main() {
 
     // Ordenar equipos en cada grupo por puntos (y diferencia de goles en caso de empate en puntos)
     for (int i = 0; i < 8; i++) {
-        std::sort(grupos[i].begin(), grupos[i].end(), [](const Equipo& a, const Equipo& b) {
-            if (a.puntos == b.puntos) {
-                if (CalcularDiferenciaGoles(a) == CalcularDiferenciaGoles(b)) {
-                    return a.goles_a_favor > b.goles_a_favor;  // Ordenar por goles a favor en caso de empate en puntos y diferencia de goles
-                }
-                return CalcularDiferenciaGoles(a) > CalcularDiferenciaGoles(b);
-            }
-            return a.puntos > b.puntos;
-        });
+        std::sort(grupos[i].begin(), grupos[i].end(), CompararClasificacionGrupo);
     }
 
     // Imprimir los equipos clasificados (los 2 primeros de cada grupo) con toda la información

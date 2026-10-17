@@ -1,0 +1,191 @@
+Fecha: 02/01/2006 - Estadio: Zentralstadion
+Portugal 1 - 1 España
+Fecha: 03/01/2006 - Estadio: EasyCredit-Stadion
+Portugal 2 - 0 Polonia
+Fecha: 04/01/2006 - Estadio: Allianz Arena
+Portugal 3 - 1 Inglaterra
+Fecha: 05/01/2006 - Estadio: Fritz-Walter-Stadion
+España 0 - 0 Polonia
+Fecha: 06/01/2006 - Estadio: Olympiastadion
+España 2 - 0 Inglaterra
+Fecha: 07/01/2006 - Estadio: Allianz Arena
+Polonia 2 - 1 Inglaterra
+Fecha: 08/01/2006 - Estadio: Olympiastadion
+Suecia 0 - 1 Brasil
+Fecha: 09/01/2006 - Estadio: Fritz-Walter-Stadion
+Suecia 1 - 0 Francia
+Fecha: 10/01/2006 - Estadio: Fritz-Walter-Stadion
+Suecia 2 - 0 Corea
+Fecha: 11/01/2006 - Estadio: Arena AufSchalke
+Brasil 1 - 0 Francia
+Fecha: 12/01/2006 - Estadio: Zentralstadion
+Brasil 1 - 0 Corea
+Fecha: 13/01/2006 - Estadio: Gottlieb-Daimler-Stadion
+Francia 1 - 0 Corea
+Fecha: 14/01/2006 - Estadio: Signal Iduna Park
+Costa 0 - 0 República
+Fecha: 15/01/2006 - Estadio: Arena Leipzig
+Costa 0 - 0 Trinidad
+Fecha: 16/01/2006 - Estadio: Allianz Arena
+Costa 0 - 1 Ucrania
+Fecha: 17/01/2006 - Estadio: Gottlieb-Daimler-Stadion
+República 0 - 0 Trinidad
+Fecha: 18/01/2006 - Estadio: Zentralstadion
+República 0 - 1 Ucrania
+Fecha: 19/01/2006 - Estadio: Arena AufSchalke
+Trinidad 0 - 1 Ucrania
+Fecha: 20/01/2006 - Estadio: Olympiastadion
+Serbia 0 - 0 Costa
+Fecha: 21/01/2006 - Estadio: Olympiastadion
+Serbia 0 - 0 
+Fecha: 22/01/2006 - Estadio: Arena Leipzig
+Serbia 0 - 0 Paraguay
+Fecha: 23/01/2006 - Estadio: Veltins-Arena
+Costa 0 - 0 
+Fecha: 24/01/2006 - Estadio: Fritz-Walter-Stadion
+Costa 0 - 1 Paraguay
+Fecha: 25/01/2006 - Estadio: Gottlieb-Daimler-Stadion
+ 0 - 2 Paraguay
+Fecha: 26/01/2006 - Estadio: Arena Leipzig
+Italia 0 - 0 Camerún
+Fecha: 27/01/2006 - Estadio: Arena Leipzig
+Italia 0 - 0 Arabia
+Fecha: 28/01/2006 - Estadio: Allianz Arena
+Italia 0 - 0 Ghana
+Fecha: 29/01/2006 - Estadio: Allianz Arena
+Camerún 1 - 0 Arabia
+Fecha: 30/01/2006 - Estadio: Olympiastadion
+Camerún 0 - 1 Ghana
+Fecha: 31/01/2006 - Estadio: Arena Leipzig
+Arabia 0 - 0 Ghana
+Fecha: 01/02/2006 - Estadio: Allianz Arena
+Irán 1 - 0 Estados
+Fecha: 02/02/2006 - Estadio: Zentralstadion
+Irán 1 - 0 Suiza
+Fecha: 03/02/2006 - Estadio: Veltins-Arena
+Irán 1 - 0 Argentina
+Fecha: 04/02/2006 - Estadio: Arena AufSchalke
+Estados 0 - 1 Suiza
+Fecha: 05/02/2006 - Estadio: Gottlieb-Daimler-Stadion
+Estados 0 - 0 Argentina
+Fecha: 06/02/2006 - Estadio: Fritz-Walter-Stadion
+Suiza 1 - 0 Argentina
+Fecha: 07/02/2006 - Estadio: Gottlieb-Daimler-Stadion
+Túnez 2 - 0 Países
+Fecha: 08/02/2006 - Estadio: Arena Leipzig
+Túnez 0 - 1 Ecuador
+Fecha: 09/02/2006 - Estadio: Allianz Arena
+Túnez 1 - 0 Croacia
+Fecha: 10/02/2006 - Estadio: EasyCredit-Stadion
+Países 0 - 1 Ecuador
+Fecha: 11/02/2006 - Estadio: Veltins-Arena
+Países 0 - 2 Croacia
+Fecha: 12/02/2006 - Estadio: EasyCredit-Stadion
+Ecuador 0 - 0 Croacia
+Fecha: 13/02/2006 - Estadio: Signal Iduna Park
+México 0 - 0 Togo
+Fecha: 14/02/2006 - Estadio: EasyCredit-Stadion
+México 2 - 0 Colombia
+Fecha: 15/02/2006 - Estadio: Olympiastadion
+México 2 - 0 Japón
+Fecha: 16/02/2006 - Estadio: Zentralstadion
+Togo 0 - 0 Colombia
+Fecha: 17/02/2006 - Estadio: Veltins-Arena
+Togo 0 - 0 Japón
+Fecha: 18/02/2006 - Estadio: Signal Iduna Park
+Colombia 0 - 1 Japón
+Clasificados del Grupo 1:
+Equipo: Portugal - Puntos: 7 GA: 6 GC: 2 Dif. Goles: 4
+Equipo: España - Puntos: 5 GA: 3 GC: 1 Dif. Goles: 2
+Equipo: Polonia - Puntos: 4 GA: 2 GC: 3 Dif. Goles: -1
+Equipo: Inglaterra - Puntos: 0 GA: 2 GC: 7 Dif. Goles: -5
+------------------------
+Clasificados del Grupo 2:
+Equipo: Brasil - Puntos: 9 GA: 3 GC: 0 Dif. Goles: 3
+Equipo: Suecia - Puntos: 6 GA: 3 GC: 1 Dif. Goles: 2
+Equipo: Francia - Puntos: 3 GA: 1 GC: 2 Dif. Goles: -1
+Equipo: Corea - Puntos: 0 GA: 0 GC: 4 Dif. Goles: -4
+------------------------
+Clasificados del Grupo 3:
+Equipo: Ucrania - Puntos: 9 GA: 3 GC: 0 Dif. Goles: 3
+Equipo: Costa - Puntos: 2 GA: 0 GC: 1 Dif. Goles: -1
+Equipo: República - Puntos: 2 GA: 0 GC: 1 Dif. Goles: -1
+Equipo: Trinidad - Puntos: 2 GA: 0 GC: 1 Dif. Goles: -1
+------------------------
+Clasificados del Grupo 4:
+Equipo: Paraguay - Puntos: 7 GA: 3 GC: 0 Dif. Goles: 3
+Equipo: Serbia - Puntos: 3 GA: 0 GC: 0 Dif. Goles: 0
+Equipo: Costa - Puntos: 2 GA: 0 GC: 1 Dif. Goles: -1
+Equipo:  - Puntos: 2 GA: 0 GC: 2 Dif. Goles: -2
+------------------------
+Clasificados del Grupo 5:
+Equipo: Ghana - Puntos: 5 GA: 1 GC: 0 Dif. Goles: 1
+Equipo: Camerún - Puntos: 4 GA: 1 GC: 1 Dif. Goles: 0
+Equipo: Italia - Puntos: 3 GA: 0 GC: 0 Dif. Goles: 0
+Equipo: Arabia - Puntos: 2 GA: 0 GC: 1 Dif. Goles: -1
+------------------------
+Clasificados del Grupo 6:
+Equipo: Irán - Puntos: 9 GA: 3 GC: 0 Dif. Goles: 3
+Equipo: Suiza - Puntos: 6 GA: 2 GC: 1 Dif. Goles: 1
+Equipo: Estados - Puntos: 1 GA: 0 GC: 2 Dif. Goles: -2
+Equipo: Argentina - Puntos: 1 GA: 0 GC: 2 Dif. Goles: -2
+------------------------
+Clasificados del Grupo 7:
+Equipo: Ecuador - Puntos: 7 GA: 2 GC: 0 Dif. Goles: 2
+Equipo: Túnez - Puntos: 6 GA: 3 GC: 1 Dif. Goles: 2
+Equipo: Croacia - Puntos: 4 GA: 2 GC: 1 Dif. Goles: 1
+Equipo: Países - Puntos: 0 GA: 0 GC: 5 Dif. Goles: -5
+------------------------
+Clasificados del Grupo 8:
+Equipo: México - Puntos: 7 GA: 4 GC: 0 Dif. Goles: 4
+Equipo: Japón - Puntos: 4 GA: 1 GC: 2 Dif. Goles: -1
+Equipo: Togo - Puntos: 3 GA: 0 GC: 0 Dif. Goles: 0
+Equipo: Colombia - Puntos: 1 GA: 0 GC: 3 Dif. Goles: -3
+------------------------
+------ Fase de Eliminación Directa ------
+Fecha: 19/02/2006 - Estadio: Signal Iduna Park
+Portugal 3 - 1 España
+Empate en tiempo reglamentario. Se define en tiempo extra y/o tanda de penales.
+Fecha: 20/02/2006 - Estadio: Olympiastadion
+Brasil 3 - 2 Suecia
+Fecha: 21/02/2006 - Estadio: Allianz Arena
+Ucrania 1 - 0 Costa
+Empate en tiempo reglamentario. Se define en tiempo extra y/o tanda de penales.
+Empate después del tiempo extra. Se define por tanda de penales.
+Resultado de la tanda de penales: Paraguay 3 - 0 Serbia
+Fecha: 22/02/2006 - Estadio: Gottlieb-Daimler-Stadion
+Paraguay 3 - 0 Serbia
+Fecha: 23/02/2006 - Estadio: Signal Iduna Park
+Ghana 1 - 0 Camerún
+Fecha: 24/02/2006 - Estadio: Signal Iduna Park
+Irán 0 - 1 Suiza
+Fecha: 25/02/2006 - Estadio: Zentralstadion
+Ecuador 2 - 0 Túnez
+Fecha: 26/02/2006 - Estadio: Allianz Arena
+México 3 - 1 Japón
+Fecha: 27/02/2006 - Estadio: Arena AufSchalke
+Portugal 0 - 2 Brasil
+Fecha: 28/02/2006 - Estadio: Olympiastadion
+Ucrania 1 - 0 Paraguay
+Empate en tiempo reglamentario. Se define en tiempo extra y/o tanda de penales.
+Fecha: 01/03/2006 - Estadio: Arena AufSchalke
+Ghana 2 - 1 Suiza
+Empate en tiempo reglamentario. Se define en tiempo extra y/o tanda de penales.
+Empate después del tiempo extra. Se define por tanda de penales.
+Resultado de la tanda de penales: Ecuador 3 - 3 México
+Fecha: 02/03/2006 - Estadio: Gottlieb-Daimler-Stadion
+Ecuador 3 - 3 México
+Fecha: 03/03/2006 - Estadio: Olympiastadion
+Portugal 1 - 0 Paraguay
+Fecha: 04/03/2006 - Estadio: Zentralstadion
+Suiza 1 - 0 México
+------ Partido por el Tercer y Cuarto Puesto ------
+Empate en tiempo reglamentario. Se define en tiempo extra y/o tanda de penales.
+Empate después del tiempo extra. Se define por tanda de penales.
+Resultado de la tanda de penales: Paraguay 4 - 4 Portugal
+Fecha: 05/03/2006 - Estadio: Gottlieb-Daimler-Stadion
+Paraguay 4 - 4 Portugal
+------ Final ------
+Empate en tiempo reglamentario. Se define en tiempo extra y/o tanda de penales.
+Fecha: 06/03/2006 - Estadio: Zentralstadion
+Portugal 2 - 0 México
