@@ -1,0 +1,19 @@
+Comparacion antes y despues de la refactorizacion
+Fecha: 2026-10-17
+Rama: refactor/mantenimiento-simulador
+Golden master: IDENTICAS=si, 7590 bytes, SHA256 f777c59c0748b6e14d190a351b863fefd499c0c23881de3d6981a8ea5d9a530f
+
+Metrica | Antes | Despues
+SimularPartido NLOC / CCN / longitud | 66 / 15 / 99 | 20 / 4 / 26
+main NLOC / CCN / longitud | 66 / 12 / 100 | 66 / 12 / 82
+Funciones | 8 en main2.cpp | 12 en simulador.cpp mas main
+CCN promedio (lizard, umbral CCN > 10 o longitud > 50) | 5.2, 2 funciones sobre el umbral | 3.4, solo main sigue sobre el umbral
+cppcheck --enable=all | 4 miembros sin inicializar y 1 referencia que podia ser const | 4 miembros sin inicializar. La referencia const ya no aparece
+Cobertura de lineas (gcovr) | 144/203 = 70% en main2.cpp | 146/149 = 98% en main.cpp + simulador.cpp
+Cobertura de ramas | 170/418 = 40% | 135/216 = 62%
+Pruebas GoogleTest | 10 PASSED | 10 PASSED
+Sanitizers | no enlazan -lasan ni -lubsan | igual, la limitacion es de MSYS2
+
+La subida de cobertura no significa que el programa recorra caminos nuevos. Los bucles duplicados desaparecieron, asi que hay menos ramas (418 a 216). El golden master demuestra que la salida es la misma.
+
+main conserva CCN 12. Separar el archivo no partio esa funcion. Queda como trabajo futuro, no como bug.

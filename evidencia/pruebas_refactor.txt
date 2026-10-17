@@ -1,0 +1,11 @@
+Pruebas despues de cada tecnica - Fase 4
+Rama: refactor/mantenimiento-simulador
+Comando: build\simulador_tests.exe --gtest_color=no
+Resultado de cada commit: 10 pruebas, PASSED, TEST_EXIT=0
+El golden master siguio coincidiendo con evidencia/salida_original.txt.
+
+a59a748 refactor: reemplazar numeros magicos por constantes con nombre
+0d139cd refactor: extraer AleatorioUnitario para quitar la expresion repetida
+6a3f279 refactor: extraer SimularTiempo para eliminar bucles duplicados
+1b700dc refactor: renombrar variables al mismo estilo snake_case
+34c00ee refactor: separar Partido y los archivos del simulador

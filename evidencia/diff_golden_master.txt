@@ -1,0 +1,11 @@
+Comparacion del golden master despues de la refactorizacion
+Fecha: 2026-10-17
+Referencia: evidencia/salida_original.txt
+Ejecutable: build/simulador.exe
+Directorio de trabajo: runtime-data
+EXIT=0
+BYTES_REFERENCIA=7590
+BYTES_DESPUES=7590
+SHA256_REFERENCIA=f777c59c0748b6e14d190a351b863fefd499c0c23881de3d6981a8ea5d9a530f
+SHA256_DESPUES=f777c59c0748b6e14d190a351b863fefd499c0c23881de3d6981a8ea5d9a530f
+IDENTICAS=si

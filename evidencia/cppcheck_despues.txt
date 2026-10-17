@@ -1,0 +1,11 @@
+Analisis de simulador.cpp y main.cpp. Los .h no se pasan sueltos: cppcheck los marca como codigo C o como miembros sin uso porque no ve los .cpp.
+
+Checking simulador.cpp ...
+1/2 files checked 61% done
+Checking main.cpp ...
+2/2 files checked 100% done
+equipo.h:7:warning:uninitMemberVarNoCtor:Member variable 'Equipo::goles_a_favor' has no initializer.
+equipo.h:8:warning:uninitMemberVarNoCtor:Member variable 'Equipo::goles_en_contra' has no initializer.
+equipo.h:9:warning:uninitMemberVarNoCtor:Member variable 'Equipo::puntos' has no initializer.
+equipo.h:10:warning:uninitMemberVarNoCtor:Member variable 'Equipo::probabilidad_gol' has no initializer.
+nofile:0:information:checkersReport:Active checkers: 183/186 (use --checkers-report=<filename> to see details)

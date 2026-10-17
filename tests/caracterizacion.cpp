@@ -8,9 +8,9 @@
 #include <string>
 #include <vector>
 
-#define main simulador_main
-#include "../main2.cpp"
-#undef main
+#include "simulador.h"
+
+#include <random>
 
 #include "rutas_prueba.h"
 
@@ -99,22 +99,23 @@ std::string LeerArchivo(const std::string& ruta) {
 }  // namespace
 
 TEST(CalcularDiferenciaGoles, RestaFavorMenosContra) {
-    const Equipo equipo{"Local", 5, 2, 0, 0.5, "", ""};
+    const Equipo equipo{"Local", 5, 2, 0, 0.5};
     EXPECT_EQ(3, CalcularDiferenciaGoles(equipo));
 }
 
 TEST(CalcularDiferenciaGoles, PermiteNegativaYCero) {
-    const Equipo negativo{"A", 1, 4, 0, 0.5, "", ""};
-    const Equipo cero{"B", 2, 2, 0, 0.5, "", ""};
+    const Equipo negativo{"A", 1, 4, 0, 0.5};
+    const Equipo cero{"B", 2, 2, 0, 0.5};
     EXPECT_EQ(-3, CalcularDiferenciaGoles(negativo));
     EXPECT_EQ(0, CalcularDiferenciaGoles(cero));
 }
 
 TEST(Puntos, EmpateCuandoNoHayProbabilidadDeGol) {
-    Equipo local{"Local", 0, 0, 0, 0.0, "", ""};
-    Equipo visita{"Visita", 0, 0, 0, 0.0, "", ""};
+    Equipo local{"Local", 0, 0, 0, 0.0};
+    Equipo visita{"Visita", 0, 0, 0, 0.0};
     const SilencioCout silencio;
-    SimularPartido(local, visita, false);
+    std::mt19937 generador(kSemilla);
+    SimularPartido(local, visita, false, generador);
     EXPECT_EQ(0, local.goles_a_favor);
     EXPECT_EQ(0, visita.goles_a_favor);
     EXPECT_EQ(1, local.puntos);
@@ -124,10 +125,11 @@ TEST(Puntos, EmpateCuandoNoHayProbabilidadDeGol) {
 
 TEST(Puntos, VictoriaDelPrimeroConSemillaFija) {
     std::srand(1);
-    Equipo favorito{"Favorito", 0, 0, 0, 90.0, "", ""};
-    Equipo debil{"Debil", 0, 0, 0, 0.0, "", ""};
+    Equipo favorito{"Favorito", 0, 0, 0, 90.0};
+    Equipo debil{"Debil", 0, 0, 0, 0.0};
     const SilencioCout silencio;
-    SimularPartido(favorito, debil, false);
+    std::mt19937 generador(kSemilla);
+    SimularPartido(favorito, debil, false, generador);
     EXPECT_GT(favorito.goles_a_favor, debil.goles_a_favor);
     EXPECT_EQ(3, favorito.puntos);
     EXPECT_EQ(0, debil.puntos);
@@ -138,10 +140,11 @@ TEST(Puntos, VictoriaDelPrimeroConSemillaFija) {
 
 TEST(Puntos, DerrotaDelPrimeroConSemillaFija) {
     std::srand(1);
-    Equipo debil{"Debil", 0, 0, 0, 0.0, "", ""};
-    Equipo favorito{"Favorito", 0, 0, 0, 90.0, "", ""};
+    Equipo debil{"Debil", 0, 0, 0, 0.0};
+    Equipo favorito{"Favorito", 0, 0, 0, 90.0};
     const SilencioCout silencio;
-    SimularPartido(debil, favorito, false);
+    std::mt19937 generador(kSemilla);
+    SimularPartido(debil, favorito, false, generador);
     EXPECT_LT(debil.goles_a_favor, favorito.goles_a_favor);
     EXPECT_EQ(0, debil.puntos);
     EXPECT_EQ(3, favorito.puntos);
@@ -149,10 +152,11 @@ TEST(Puntos, DerrotaDelPrimeroConSemillaFija) {
 }
 
 TEST(Penales, EmpateEnCeroSigueEmpatado) {
-    Equipo local{"Local", 0, 0, 0, 0.0, "", ""};
-    Equipo visita{"Visita", 0, 0, 0, 0.0, "", ""};
+    Equipo local{"Local", 0, 0, 0, 0.0};
+    Equipo visita{"Visita", 0, 0, 0, 0.0};
     SilencioCout silencio;
-    SimularPartido(local, visita, true);
+    std::mt19937 generador(kSemilla);
+    SimularPartido(local, visita, true, generador);
     EXPECT_EQ(0, local.goles_a_favor);
     EXPECT_EQ(0, visita.goles_a_favor);
     EXPECT_EQ(1, local.puntos);
@@ -170,10 +174,10 @@ TEST(ObtenerFecha, ConservaAnio2006YAvanza) {
 }
 
 TEST(ClasificacionGrupo, OrdenaPorPuntosDiferenciaYGoles) {
-    const Equipo conMasPuntos{"Puntos", 1, 1, 6, 0.0, "", ""};
-    const Equipo mejorDiferencia{"Dif", 5, 1, 3, 0.0, "", ""};
-    const Equipo masGoles{"Goles", 4, 2, 3, 0.0, "", ""};
-    const Equipo menosGoles{"Menos", 2, 0, 3, 0.0, "", ""};
+    const Equipo conMasPuntos{"Puntos", 1, 1, 6, 0.0};
+    const Equipo mejorDiferencia{"Dif", 5, 1, 3, 0.0};
+    const Equipo masGoles{"Goles", 4, 2, 3, 0.0};
+    const Equipo menosGoles{"Menos", 2, 0, 3, 0.0};
 
     EXPECT_TRUE(CompararClasificacionGrupo(conMasPuntos, mejorDiferencia));
     EXPECT_TRUE(CompararClasificacionGrupo(mejorDiferencia, masGoles));
@@ -189,10 +193,10 @@ TEST(ClasificacionGrupo, OrdenaPorPuntosDiferenciaYGoles) {
 }
 
 TEST(GanadoresRonda, ComparaGolesAcumuladosYEnEmpateEligeAlSegundo) {
-    const Equipo alto{"Alto", 4, 0, 0, 0.0, "", ""};
-    const Equipo bajo{"Bajo", 1, 0, 0, 0.0, "", ""};
-    const Equipo empate1{"E1", 2, 0, 0, 0.0, "", ""};
-    const Equipo empate2{"E2", 2, 9, 0, 0.0, "", ""};
+    const Equipo alto{"Alto", 4, 0, 0, 0.0};
+    const Equipo bajo{"Bajo", 1, 0, 0, 0.0};
+    const Equipo empate1{"E1", 2, 0, 0, 0.0};
+    const Equipo empate2{"E2", 2, 9, 0, 0.0};
     const std::vector<Equipo> ronda{alto, bajo, empate1, empate2};
     const std::vector<Equipo> ganadores = ObtenerGanadoresRonda(ronda);
     ASSERT_EQ(2u, ganadores.size());

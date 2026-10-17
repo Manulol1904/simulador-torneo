@@ -5,7 +5,11 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_executable(simulador main2.cpp)
+add_library(nucleo_simulador simulador.cpp)
+target_include_directories(nucleo_simulador PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
+
+add_executable(simulador main.cpp)
+target_link_libraries(simulador PRIVATE nucleo_simulador)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -18,7 +22,7 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 add_executable(simulador_tests tests/caracterizacion.cpp)
-target_link_libraries(simulador_tests PRIVATE GTest::gtest_main)
+target_link_libraries(simulador_tests PRIVATE nucleo_simulador GTest::gtest_main)
 add_dependencies(simulador_tests simulador)
 target_include_directories(simulador_tests PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
 
