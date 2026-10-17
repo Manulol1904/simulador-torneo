@@ -1,4 +1,5 @@
-﻿* bdf3d40 (HEAD -> main) docs: registrar evidencia de entorno, compilacion y ejecucion
+* df4565f (HEAD -> main) docs: guardar git log de la fase 0B
+* bdf3d40 docs: registrar evidencia de entorno, compilacion y ejecucion
 * 1083c30 build: agregar CMakeLists.txt para compilar en C++17
 * 43a78ea fix: agregar include <iomanip> faltante para compilar
 * 552901a chore: importar c├│digo original del simulador de torneo
