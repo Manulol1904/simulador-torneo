@@ -80,105 +80,81 @@ double AleatorioUnitario() {
     return static_cast<double>(std::rand()) / RAND_MAX;
 }
 
-// Función para simular un partido entre dos equipos y actualizar sus estadísticas
-void SimularPartido(Equipo& equipo1, Equipo& equipo2, bool esEliminacionDirecta) {
-    
-    double probabilidadGolEquipo1 = equipo1.probabilidad_gol;
-    double probabilidadGolEquipo2 = equipo2.probabilidad_gol;
-
-    int golesEquipo1 = 0;
-    int golesEquipo2 = 0;
-
-    // Simulación del tiempo reglamentario (90 minutos)
-    for (int minuto = 0; minuto < kMinutosReglamento; minuto++) {
-        double resultadoAleatorio = AleatorioUnitario();
-
-        // Determinar si ocurre un gol para el equipo 1 en este minuto
-        if (resultadoAleatorio < probabilidadGolEquipo1 / kMinutosReglamento) {
-            golesEquipo1++;
+void SimularTiempo(int minutos, double probabilidad1, double probabilidad2, int& goles1, int& goles2) {
+    for (int minuto = 0; minuto < minutos; minuto++) {
+        if (AleatorioUnitario() < probabilidad1 / minutos) {
+            goles1++;
         }
+        if (AleatorioUnitario() < probabilidad2 / minutos) {
+            goles2++;
+        }
+    }
+}
 
-        resultadoAleatorio = AleatorioUnitario();
+void SimularTandaPenales(const Equipo& equipo1, const Equipo& equipo2, double probabilidad1, double probabilidad2, int& goles1, int& goles2) {
+    std::cout << "Empate después del tiempo extra. Se define por tanda de penales." << std::endl;
 
-        // Determinar si ocurre un gol para el equipo 2 en este minuto
-        if (resultadoAleatorio < probabilidadGolEquipo2 / kMinutosReglamento) {
-            golesEquipo2++;
+    int penales1 = 0;
+    int penales2 = 0;
+    for (int tiro = 0; tiro < kTirosPorEquipo; tiro++) {
+        if (AleatorioUnitario() < probabilidad1) {
+            penales1++;
+        }
+        if (AleatorioUnitario() < probabilidad2) {
+            penales2++;
         }
     }
 
-    // En caso de empate en tiempo reglamentario y es un partido de eliminación directa, se juega tiempo extra y/o tanda de penales
-    if (esEliminacionDirecta && golesEquipo1 == golesEquipo2) {
-        std::cout << "Empate en tiempo reglamentario. Se define en tiempo extra y/o tanda de penales." << std::endl;
+    goles1 += penales1;
+    goles2 += penales2;
+    std::cout << "Resultado de la tanda de penales: " << equipo1.nombre << " " << penales1 << " - " << penales2 << " " << equipo2.nombre << std::endl;
+}
 
-        // Simulación de tiempo extra (30 minutos)
-        for (int minuto = 0; minuto < kMinutosProrroga; minuto++) {
-            double resultadoAleatorio = AleatorioUnitario();
+void ActualizarEstadisticas(Equipo& equipo1, Equipo& equipo2, int goles1, int goles2) {
+    equipo1.goles_a_favor += goles1;
+    equipo1.goles_en_contra += goles2;
+    equipo2.goles_a_favor += goles2;
+    equipo2.goles_en_contra += goles1;
 
-            // Determinar si ocurre un gol para el equipo 1 en este minuto
-            if (resultadoAleatorio < probabilidadGolEquipo1 / kMinutosProrroga) {
-                golesEquipo1++;
-            }
-
-            resultadoAleatorio = AleatorioUnitario();
-
-            // Determinar si ocurre un gol para el equipo 2 en este minuto
-            if (resultadoAleatorio < probabilidadGolEquipo2 / kMinutosProrroga) {
-                golesEquipo2++;
-            }
-        }
-
-        // En caso de empate después del tiempo extra, se define por tanda de penales
-        if (golesEquipo1 == golesEquipo2) {
-            std::cout << "Empate después del tiempo extra. Se define por tanda de penales." << std::endl;
-
-            // Simulación de tanda de penales
-            int penalesEquipo1 = 0;
-            int penalesEquipo2 = 0;
-
-            for (int i = 0; i < kTirosPorEquipo; i++) {
-                double resultadoAleatorio = AleatorioUnitario();
-                if (resultadoAleatorio < probabilidadGolEquipo1) {
-                    penalesEquipo1++;
-                }
-                resultadoAleatorio = AleatorioUnitario();
-                if (resultadoAleatorio < probabilidadGolEquipo2) {
-                    penalesEquipo2++;
-                }
-            }
-
-            // Actualiza el marcador con los penales
-            golesEquipo1 += penalesEquipo1;
-            golesEquipo2 += penalesEquipo2;
-
-            std::cout << "Resultado de la tanda de penales: " << equipo1.nombre << " " << penalesEquipo1 << " - " << penalesEquipo2 << " " << equipo2.nombre << std::endl;
-        }
-    }
-
-    // Actualiza las estadísticas de los equipos
-    equipo1.goles_a_favor += golesEquipo1;
-    equipo1.goles_en_contra += golesEquipo2;
-    equipo2.goles_a_favor += golesEquipo2;
-    equipo2.goles_en_contra += golesEquipo1;
-
-    if (golesEquipo1 > golesEquipo2) {
-        equipo1.puntos += kPuntosVictoria;  // Equipo 1 gana
-    } else if (golesEquipo1 < golesEquipo2) {
-        equipo2.puntos += kPuntosVictoria;  // Equipo 2 gana
+    if (goles1 > goles2) {
+        equipo1.puntos += kPuntosVictoria;
+    } else if (goles1 < goles2) {
+        equipo2.puntos += kPuntosVictoria;
     } else {
-        equipo1.puntos += kPuntosEmpate;  // Empate
+        equipo1.puntos += kPuntosEmpate;
         equipo2.puntos += kPuntosEmpate;
     }
+}
 
-    // Actualiza la fecha y el estadio del partido
-    std::string fecha = ObtenerFecha();
+void ImprimirResultado(const Equipo& equipo1, const Equipo& equipo2, int goles1, int goles2, const std::string& fecha) {
+    std::cout << "Fecha: " << fecha << " - Estadio: " << equipo1.estadio << std::endl;
+    std::cout << equipo1.nombre << " " << goles1 << " - " << goles2 << " " << equipo2.nombre << std::endl;
+}
+
+void SimularPartido(Equipo& equipo1, Equipo& equipo2, bool esEliminacionDirecta) {
+    const double probabilidad1 = equipo1.probabilidad_gol;
+    const double probabilidad2 = equipo2.probabilidad_gol;
+    int goles1 = 0;
+    int goles2 = 0;
+
+    SimularTiempo(kMinutosReglamento, probabilidad1, probabilidad2, goles1, goles2);
+
+    if (esEliminacionDirecta && goles1 == goles2) {
+        std::cout << "Empate en tiempo reglamentario. Se define en tiempo extra y/o tanda de penales." << std::endl;
+        SimularTiempo(kMinutosProrroga, probabilidad1, probabilidad2, goles1, goles2);
+        if (goles1 == goles2) {
+            SimularTandaPenales(equipo1, equipo2, probabilidad1, probabilidad2, goles1, goles2);
+        }
+    }
+
+    ActualizarEstadisticas(equipo1, equipo2, goles1, goles2);
+
+    const std::string fecha = ObtenerFecha();
     equipo1.fecha = fecha;
     equipo2.fecha = fecha;
     equipo1.estadio = ObtenerEstadioAleatorio();
     equipo2.estadio = ObtenerEstadioAleatorio();
-
-    // Muestra información completa del partido
-    std::cout << "Fecha: " << fecha << " - Estadio: " << equipo1.estadio << std::endl;
-    std::cout << equipo1.nombre << " " << golesEquipo1 << " - " << golesEquipo2 << " " << equipo2.nombre << std::endl;
+    ImprimirResultado(equipo1, equipo2, goles1, goles2, fecha);
 }
 
 // Función para calcular la diferencia de goles de un equipo
