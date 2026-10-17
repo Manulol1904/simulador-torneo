@@ -1,0 +1,16 @@
+Repositorio publico - Fase 0B
+Fecha: 2026-10-17
+Cuenta: Manulol1904
+Nombre: simulador-torneo
+Visibilidad: PUBLIC
+URL: https://github.com/Manulol1904/simulador-torneo
+Rama principal: main
+Seguimiento: main...origin/main
+
+Commits publicados en origin/main:
+a849b72 docs: actualizar git log de la fase 0B
+df4565f docs: guardar git log de la fase 0B
+bdf3d40 docs: registrar evidencia de entorno, compilacion y ejecucion
+1083c30 build: agregar CMakeLists.txt para compilar en C++17
+43a78ea fix: agregar include <iomanip> faltante para compilar
+552901a chore: importar código original del simulador de torneo
