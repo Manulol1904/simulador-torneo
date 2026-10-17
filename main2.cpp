@@ -76,6 +76,10 @@ std::string ObtenerEstadioAleatorio() {
     return estadios[dist(gen)];
 }
 
+double AleatorioUnitario() {
+    return static_cast<double>(std::rand()) / RAND_MAX;
+}
+
 // Función para simular un partido entre dos equipos y actualizar sus estadísticas
 void SimularPartido(Equipo& equipo1, Equipo& equipo2, bool esEliminacionDirecta) {
     
@@ -87,14 +91,14 @@ void SimularPartido(Equipo& equipo1, Equipo& equipo2, bool esEliminacionDirecta)
 
     // Simulación del tiempo reglamentario (90 minutos)
     for (int minuto = 0; minuto < kMinutosReglamento; minuto++) {
-        double resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
+        double resultadoAleatorio = AleatorioUnitario();
 
         // Determinar si ocurre un gol para el equipo 1 en este minuto
         if (resultadoAleatorio < probabilidadGolEquipo1 / kMinutosReglamento) {
             golesEquipo1++;
         }
 
-        resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
+        resultadoAleatorio = AleatorioUnitario();
 
         // Determinar si ocurre un gol para el equipo 2 en este minuto
         if (resultadoAleatorio < probabilidadGolEquipo2 / kMinutosReglamento) {
@@ -108,14 +112,14 @@ void SimularPartido(Equipo& equipo1, Equipo& equipo2, bool esEliminacionDirecta)
 
         // Simulación de tiempo extra (30 minutos)
         for (int minuto = 0; minuto < kMinutosProrroga; minuto++) {
-            double resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
+            double resultadoAleatorio = AleatorioUnitario();
 
             // Determinar si ocurre un gol para el equipo 1 en este minuto
             if (resultadoAleatorio < probabilidadGolEquipo1 / kMinutosProrroga) {
                 golesEquipo1++;
             }
 
-            resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
+            resultadoAleatorio = AleatorioUnitario();
 
             // Determinar si ocurre un gol para el equipo 2 en este minuto
             if (resultadoAleatorio < probabilidadGolEquipo2 / kMinutosProrroga) {
@@ -132,11 +136,11 @@ void SimularPartido(Equipo& equipo1, Equipo& equipo2, bool esEliminacionDirecta)
             int penalesEquipo2 = 0;
 
             for (int i = 0; i < kTirosPorEquipo; i++) {
-                double resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
+                double resultadoAleatorio = AleatorioUnitario();
                 if (resultadoAleatorio < probabilidadGolEquipo1) {
                     penalesEquipo1++;
                 }
-                resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
+                resultadoAleatorio = AleatorioUnitario();
                 if (resultadoAleatorio < probabilidadGolEquipo2) {
                     penalesEquipo2++;
                 }
