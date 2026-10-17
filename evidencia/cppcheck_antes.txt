@@ -1,0 +1,7 @@
+Checking main2.cpp ...
+main2.cpp:12:warning:uninitMemberVarNoCtor:Member variable 'Equipo::goles_a_favor' has no initializer.
+main2.cpp:13:warning:uninitMemberVarNoCtor:Member variable 'Equipo::goles_en_contra' has no initializer.
+main2.cpp:14:warning:uninitMemberVarNoCtor:Member variable 'Equipo::puntos' has no initializer.
+main2.cpp:15:warning:uninitMemberVarNoCtor:Member variable 'Equipo::probabilidad_gol' has no initializer.
+main2.cpp:259:style:constVariableReference:Variable 'equipo' can be declared as reference to const
+nofile:0:information:checkersReport:Active checkers: 183/186 (use --checkers-report=<filename> to see details)

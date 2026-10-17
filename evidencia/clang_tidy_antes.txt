@@ -1,0 +1,291 @@
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:10:8: warning: struct 'Equipo' can be moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+   10 | struct Equipo {
+      |        ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:21:13: warning: function 'ObtenerFecha' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+   21 | std::string ObtenerFecha() {
+      |             ^
+      | static 
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:24:5: warning: variable 'anno' of type 'int' can be declared 'const' [misc-const-correctness]
+   24 |     static int anno = 2006;
+      |     ^
+      |                const 
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:24:23: warning: 2006 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]
+   24 |     static int anno = 2006;
+      |                       ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:30:28: warning: 31 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]
+   30 |     if ((mes == 1 && dia > 31) || (mes == 2 && dia > 28)) {
+      |                            ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:30:54: warning: 28 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]
+   30 |     if ((mes == 1 && dia > 31) || (mes == 2 && dia > 28)) {
+      |                                                      ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:45:13: warning: function 'ObtenerEstadioAleatorio' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+   45 | std::string ObtenerEstadioAleatorio() {
+      |             ^
+      | static 
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:56:20: warning: initializer list should have a trailing comma [readability-trailing-comma]
+   56 |     "Veltins-Arena"
+      |                    ^
+      |                    ,
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:59:25: warning: random number generator seeded with a constant value will generate a predictable sequence of values [bugprone-random-generator-seed]
+   59 |     static std::mt19937 gen(1);
+      |                         ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:60:48: warning: narrowing conversion from 'size_type' (aka 'unsigned long long') to signed type 'int' is implementation-defined [bugprone-narrowing-conversions,cppcoreguidelines-narrowing-conversions]
+   60 |     std::uniform_int_distribution<int> dist(0, estadios.size() - 1);
+      |                                                ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:61:20: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+   61 |     return estadios[dist(gen)];
+      |                    ^~~~~~~~~~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:65:6: warning: function 'SimularPartido' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+   65 | void SimularPartido(Equipo& equipo1, Equipo& equipo2, bool esEliminacionDirecta) {
+      |      ^
+      | static 
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:65:6: warning: function 'SimularPartido' has cognitive complexity of 31 (threshold 25) [readability-function-cognitive-complexity]
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:74:5: note: +1, including nesting penalty of 0, nesting level increased to 1
+   74 |     for (int minuto = 0; minuto < 90; minuto++) {
+      |     ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:78:9: note: +2, including nesting penalty of 1, nesting level increased to 2
+   78 |         if (resultadoAleatorio < probabilidadGolEquipo1 / 90) {
+      |         ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:85:9: note: +2, including nesting penalty of 1, nesting level increased to 2
+   85 |         if (resultadoAleatorio < probabilidadGolEquipo2 / 90) {
+      |         ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:91:5: note: +1, including nesting penalty of 0, nesting level increased to 1
+   91 |     if (esEliminacionDirecta && golesEquipo1 == golesEquipo2) {
+      |     ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:91:30: note: +1
+   91 |     if (esEliminacionDirecta && golesEquipo1 == golesEquipo2) {
+      |                              ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:95:9: note: +2, including nesting penalty of 1, nesting level increased to 2
+   95 |         for (int minuto = 0; minuto < 30; minuto++) {
+      |         ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:99:13: note: +3, including nesting penalty of 2, nesting level increased to 3
+   99 |             if (resultadoAleatorio < probabilidadGolEquipo1 / 30) {
+      |             ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:106:13: note: +3, including nesting penalty of 2, nesting level increased to 3
+  106 |             if (resultadoAleatorio < probabilidadGolEquipo2 / 30) {
+      |             ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:112:9: note: +2, including nesting penalty of 1, nesting level increased to 2
+  112 |         if (golesEquipo1 == golesEquipo2) {
+      |         ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:119:13: note: +3, including nesting penalty of 2, nesting level increased to 3
+  119 |             for (int i = 0; i < 5; i++) {
+      |             ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:121:17: note: +4, including nesting penalty of 3, nesting level increased to 4
+  121 |                 if (resultadoAleatorio < probabilidadGolEquipo1) {
+      |                 ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:125:17: note: +4, including nesting penalty of 3, nesting level increased to 4
+  125 |                 if (resultadoAleatorio < probabilidadGolEquipo2) {
+      |                 ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:144:5: note: +1, including nesting penalty of 0, nesting level increased to 1
+  144 |     if (golesEquipo1 > golesEquipo2) {
+      |     ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:146:12: note: +1, nesting level increased to 1
+  146 |     } else if (golesEquipo1 < golesEquipo2) {
+      |            ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:148:7: note: +1, nesting level increased to 1
+  148 |     } else {
+      |       ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:67:5: warning: variable 'probabilidadGolEquipo1' of type 'double' can be declared 'const' [misc-const-correctness]
+   67 |     double probabilidadGolEquipo1 = equipo1.probabilidad_gol;
+      |     ^
+      |            const 
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:68:5: warning: variable 'probabilidadGolEquipo2' of type 'double' can be declared 'const' [misc-const-correctness]
+   68 |     double probabilidadGolEquipo2 = equipo2.probabilidad_gol;
+      |     ^
+      |            const 
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:74:35: warning: 90 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]
+   74 |     for (int minuto = 0; minuto < 90; minuto++) {
+      |                                   ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:75:57: warning: rand() has limited randomness; use C++11 random library instead [misc-predictable-rand]
+   75 |         double resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
+      |                                                         ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:75:62: warning: no header providing "std::rand" is directly included [misc-include-cleaner]
+    1 |         double resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
+      |                                                              ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:75:72: warning: no header providing "RAND_MAX" is directly included [misc-include-cleaner]
+   75 |         double resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
+      |                                                                        ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:78:59: warning: 90 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]
+   78 |         if (resultadoAleatorio < probabilidadGolEquipo1 / 90) {
+      |                                                           ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:82:50: warning: rand() has limited randomness; use C++11 random library instead [misc-predictable-rand]
+   82 |         resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
+      |                                                  ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:85:59: warning: 90 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]
+   85 |         if (resultadoAleatorio < probabilidadGolEquipo2 / 90) {
+      |                                                           ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:95:39: warning: 30 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]
+   95 |         for (int minuto = 0; minuto < 30; minuto++) {
+      |                                       ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:96:61: warning: rand() has limited randomness; use C++11 random library instead [misc-predictable-rand]
+   96 |             double resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
+      |                                                             ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:99:63: warning: 30 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]
+   99 |             if (resultadoAleatorio < probabilidadGolEquipo1 / 30) {
+      |                                                               ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:103:54: warning: rand() has limited randomness; use C++11 random library instead [misc-predictable-rand]
+  103 |             resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
+      |                                                      ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:106:63: warning: 30 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]
+  106 |             if (resultadoAleatorio < probabilidadGolEquipo2 / 30) {
+      |                                                               ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:119:33: warning: 5 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]
+  119 |             for (int i = 0; i < 5; i++) {
+      |                                 ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:120:65: warning: rand() has limited randomness; use C++11 random library instead [misc-predictable-rand]
+  120 |                 double resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
+      |                                                                 ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:124:58: warning: rand() has limited randomness; use C++11 random library instead [misc-predictable-rand]
+  124 |                 resultadoAleatorio = static_cast<double>(std::rand()) / RAND_MAX;
+      |                                                          ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:154:5: warning: variable 'fecha' of type 'std::string' (aka 'basic_string<char>') can be declared 'const' [misc-const-correctness]
+  154 |     std::string fecha = ObtenerFecha();
+      |     ^
+      |                 const 
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:166:5: warning: function 'CalcularDiferenciaGoles' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+  166 | int CalcularDiferenciaGoles(const Equipo& equipo) {
+      |     ^
+      | static 
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:171:6: warning: function 'SimularRondaEliminacionDirecta' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+  171 | void SimularRondaEliminacionDirecta(std::vector<Equipo>& equipos) {
+      |      ^
+      | static 
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:172:10: warning: no header providing "size_t" is directly included [misc-include-cleaner]
+    1 |     for (size_t i = 0; i < equipos.size(); i += 2) {
+      |          ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:173:31: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  173 |         SimularPartido(equipos[i], equipos[i + 1], true);
+      |                               ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:173:43: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  173 |         SimularPartido(equipos[i], equipos[i + 1], true);
+      |                                           ^~~~~~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:178:21: warning: function 'ObtenerGanadoresRonda' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+  178 | std::vector<Equipo> ObtenerGanadoresRonda(const std::vector<Equipo>& equipos) {
+      |                     ^
+      | static 
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:181:20: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  181 |         if (equipos[i].goles_a_favor > equipos[i + 1].goles_a_favor) {
+      |                    ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:181:47: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  181 |         if (equipos[i].goles_a_favor > equipos[i + 1].goles_a_favor) {
+      |                                               ^~~~~~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:182:40: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  182 |             ganadores.push_back(equipos[i]);
+      |                                        ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:184:40: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  184 |             ganadores.push_back(equipos[i + 1]);
+      |                                        ^~~~~~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:190:6: warning: function 'CompararClasificacionGrupo' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+  190 | bool CompararClasificacionGrupo(const Equipo& a, const Equipo& b) {
+      |      ^
+      | static 
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:190:47: warning: parameter name 'a' is too short, expected at least 3 characters [readability-identifier-length]
+  190 | bool CompararClasificacionGrupo(const Equipo& a, const Equipo& b) {
+      |                                               ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:190:64: warning: parameter name 'b' is too short, expected at least 3 characters [readability-identifier-length]
+  190 | bool CompararClasificacionGrupo(const Equipo& a, const Equipo& b) {
+      |                                                                ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:202:5: warning: random number generator seeded with a constant value will generate a predictable sequence of values [bugprone-random-generator-seed]
+  202 |     std::srand(1);
+      |     ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:202:10: warning: no header providing "std::srand" is directly included [misc-include-cleaner]
+  202 |     std::srand(1);
+      |          ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:205:5: warning: variable 'archivoEquipos' of type 'std::string' (aka 'basic_string<char>') can be declared 'const' [misc-const-correctness]
+  205 |     std::string archivoEquipos = "desktop/proyecto c++/equipos2.txt";
+      |     ^
+      |                 const 
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:228:18: warning: random number generator seeded with a constant value will generate a predictable sequence of values [bugprone-random-generator-seed]
+  228 |     std::mt19937 gen(1);
+      |                  ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:232:5: warning: variable 'equiposPorGrupo' of type 'int' can be declared 'const' [misc-const-correctness]
+  232 |     int equiposPorGrupo = 4;
+      |     ^
+      |         const 
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:233:45: warning: 8 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]
+  233 |     std::vector<std::vector<Equipo>> grupos(8);
+      |                                             ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:235:25: warning: 8 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]
+  235 |     for (int i = 0; i < 8; i++) {
+      |                         ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:237:19: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  237 |             grupos[i].push_back(equipos[i * equiposPorGrupo + j]);
+      |                   ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:237:40: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  237 |             grupos[i].push_back(equipos[i * equiposPorGrupo + j]);
+      |                                        ^~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:237:41: warning: '*' has higher precedence than '+'; add parentheses to explicitly specify the order of operations [readability-math-missing-parentheses]
+  237 |             grupos[i].push_back(equipos[i * equiposPorGrupo + j]);
+      |                                         ^~~~~~~~~~~~~~~~~~~
+      |                                         (                  )
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:242:25: warning: 8 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]
+  242 |     for (int i = 0; i < 8; i++) {
+      |                         ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:245:38: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  245 |                 SimularPartido(grupos[i][j], grupos[i][k], false);
+      |                                      ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:245:41: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  245 |                 SimularPartido(grupos[i][j], grupos[i][k], false);
+      |                                         ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:245:52: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  245 |                 SimularPartido(grupos[i][j], grupos[i][k], false);
+      |                                                    ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:245:55: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  245 |                 SimularPartido(grupos[i][j], grupos[i][k], false);
+      |                                                       ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:251:25: warning: 8 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]
+  251 |     for (int i = 0; i < 8; i++) {
+      |                         ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:252:25: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  252 |         std::sort(grupos[i].begin(), grupos[i].end(), CompararClasificacionGrupo);
+      |                         ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:252:44: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  252 |         std::sort(grupos[i].begin(), grupos[i].end(), CompararClasificacionGrupo);
+      |                                            ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:256:25: warning: 8 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]
+  256 |     for (int i = 0; i < 8; i++) {
+      |                         ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:259:13: warning: variable 'equipo' of type 'Equipo &' can be declared 'const' [misc-const-correctness]
+  259 |             Equipo& equipo = grupos[i][j];
+      |             ^     
+      |                    const
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:259:36: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  259 |             Equipo& equipo = grupos[i][j];
+      |                                    ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:259:39: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  259 |             Equipo& equipo = grupos[i][j];
+      |                                       ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:260:13: warning: variable 'diferenciaGoles' of type 'int' can be declared 'const' [misc-const-correctness]
+  260 |             int diferenciaGoles = CalcularDiferenciaGoles(equipo);
+      |             ^
+      |                 const 
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:270:25: warning: 8 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]
+  270 |     for (int i = 0; i < 8; i++) {
+      |                         ^
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:271:45: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  271 |         equiposClasificados.push_back(grupos[i][0]);
+      |                                             ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:271:48: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  271 |         equiposClasificados.push_back(grupos[i][0]);
+      |                                                ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:272:45: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  272 |         equiposClasificados.push_back(grupos[i][1]);
+      |                                             ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:272:48: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  272 |         equiposClasificados.push_back(grupos[i][1]);
+      |                                                ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:292:36: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  292 |     SimularPartido(ganadoresCuartos[1], ganadoresCuartos[0], true);
+      |                                    ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:292:57: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  292 |     SimularPartido(ganadoresCuartos[1], ganadoresCuartos[0], true);
+      |                                                         ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:296:40: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  296 |     SimularPartido(ganadoresSemifinales[0], ganadoresSemifinales[1], true);
+      |                                        ^~~
+C:\Users\manul\OneDrive\Desktop\proyectos\simulador-torneo\main2.cpp:296:65: warning: possibly unsafe 'operator[]', consider bounds-safe alternatives [cppcoreguidelines-pro-bounds-avoid-unchecked-container-access]
+  296 |     SimularPartido(ganadoresSemifinales[0], ganadoresSemifinales[1], true);
+      |                                                                 ^~~
+9433 warnings generated.
+Suppressed 9340 warnings (9340 in non-user code).
+Use -header-filter=.* or leave it as default to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
