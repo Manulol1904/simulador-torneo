@@ -1,0 +1,4 @@
+﻿* bdf3d40 (HEAD -> main) docs: registrar evidencia de entorno, compilacion y ejecucion
+* 1083c30 build: agregar CMakeLists.txt para compilar en C++17
+* 43a78ea fix: agregar include <iomanip> faltante para compilar
+* 552901a chore: importar c├│digo original del simulador de torneo
