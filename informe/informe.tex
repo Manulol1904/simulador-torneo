@@ -1,0 +1,142 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\geometry{margin=1.6cm}
+\setlength{\parskip}{0.3em}
+\setlength{\parindent}{0pt}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black}
+\lstset{basicstyle=\ttfamily\scriptsize,breaklines=true,frame=single,columns=fullflexible,keepspaces=true,aboveskip=3pt,belowskip=3pt}
+
+\title{\vspace{-1.2em}Mantenimiento del simulador de torneo\\{\large Actividad 2, Unidad 2}}
+\author{Manuel Lozano}
+\date{17 de octubre de 2026}
+
+\begin{document}
+\maketitle
+\vspace{-2.2em}
+
+\section{Introducci\'on y selecci\'on del c\'odigo}
+El caso de clase es ConstruYA, una cadena de ferreter\'ias cuyo sistema acumula deuda t\'ecnica. El componente intervenido es de autor\'ia propia, escrito hace unos tres a\~nos: un simulador de torneo de f\'utbol en C++. Arma ocho grupos de cuatro equipos y luego octavos, cuartos, semifinales, tercer puesto y final. Lee \texttt{equipos2.txt} (nombre y probabilidad de gol por l\'inea).
+
+El original, \texttt{main2.cpp}, ten\'ia 300 l\'ineas, por encima del m\'inimo de 150. Sirve para el ejercicio porque concentra m\'etodo largo, duplicaci\'on, n\'umeros m\'agicos, estado oculto y responsabilidades mezcladas, y porque su salida se puede fijar con una semilla. El proceso fue diagn\'ostico, pruebas de caracterizaci\'on, refactorizaci\'on en una rama, validaci\'on y merge a \texttt{main}.
+
+\section{Diagn\'ostico}
+cppcheck~2.21 (\texttt{--enable=all}) no detecta m\'etodo largo, duplicaci\'on ni n\'umeros m\'agicos. S\'olo avis\'o de campos de \texttt{Equipo} sin inicializar y de una referencia que pod\'ia ser \texttt{const}. Esos smells se sostienen con clang-tidy~23 y con lizard~1.24, este \'ultimo con umbral de complejidad mayor que 10 o longitud mayor que 50. El umbral de f\'abrica de lizard no marca el archivo.
+
+\begin{center}
+\scriptsize
+\begin{tabular}{|p{2.5cm}|p{3.3cm}|p{4.2cm}|p{4.4cm}|}
+\hline
+Smell & Ubicaci\'on & Evidencia & T\'ecnica \\
+\hline
+M\'etodo largo & \texttt{SimularPartido}, 65--163 & lizard: CCN 15, longitud 99. clang-tidy: complejidad cognitiva 31 & Extraer m\'etodo \\
+\hline
+Duplicaci\'on & bucles de 90 y 30 min; \texttt{rand} seis veces & sin detector de clones; clang-tidy marca \texttt{rand} & \texttt{SimularTiempo} y aleatorio \'unico \\
+\hline
+N\'umeros m\'agicos & 90, 30, 5, 8, 2006, 31, 28 & \texttt{readability-magic-numbers} & \texttt{constexpr} \\
+\hline
+Estado oculto & \texttt{ObtenerFecha}, \texttt{static} & inspecci\'on; las pruebas dependen del orden & se documenta; no se alter\'o la secuencia \\
+\hline
+Partido dentro de \texttt{Equipo} & \texttt{estadio}, \texttt{fecha} & inspecci\'on; cppcheck ve los campos sin inicializar & estructura \texttt{Partido} \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Refactorizaci\'on}
+Cinco t\'ecnicas, un commit cada una, en \texttt{refactor/mantenimiento-simulador}. Los valores y el orden de \texttt{std::rand} no cambiaron. \texttt{std::rand} y \texttt{mt19937} no se unieron: son algoritmos distintos y la salida con semilla 1 dejar\'ia de coincidir.
+
+Antes, el minuto de juego estaba copiado para el tiempo reglamentario y para la pr\'orroga:
+
+\begin{lstlisting}
+for (int minuto = 0; minuto < 90; minuto++) {
+    double resultadoAleatorio =
+        static_cast<double>(std::rand()) / RAND_MAX;
+    if (resultadoAleatorio < probabilidadGolEquipo1 / 90)
+        golesEquipo1++;
+    resultadoAleatorio =
+        static_cast<double>(std::rand()) / RAND_MAX;
+    if (resultadoAleatorio < probabilidadGolEquipo2 / 90)
+        golesEquipo2++;
+}
+\end{lstlisting}
+
+Despu\'es, ambos tramos llaman a la misma funci\'on, y el n\'umero 90 es \texttt{kMinutosReglamento}:
+
+\begin{lstlisting}
+void SimularTiempo(int minutos, double probabilidad1,
+        double probabilidad2, int& goles1, int& goles2) {
+    for (int minuto = 0; minuto < minutos; minuto++) {
+        if (AleatorioUnitario() < probabilidad1 / minutos)
+            goles1++;
+        if (AleatorioUnitario() < probabilidad2 / minutos)
+            goles2++;
+    }
+}
+\end{lstlisting}
+
+Tambi\'en se extrajeron la tanda de penales, la actualizaci\'on de estad\'isticas y la impresi\'on. Las variables de \texttt{main} pasaron a \texttt{snake\_case}. Fecha y estadio salieron de \texttt{Equipo} hacia \texttt{Partido}, y el c\'odigo qued\'o en \texttt{equipo.h}, \texttt{simulador.h}, \texttt{simulador.cpp} y \texttt{main.cpp}. La segunda petici\'on de estadio, que el original hac\'ia y no imprim\'ia, se conserv\'o para no desplazar los estadios siguientes.
+
+\section{Herramientas de an\'alisis}
+La est\'atica es cppcheck, complementada con clang-tidy y lizard. La din\'amica prevista era AddressSanitizer y UBSan. En MSYS2 UCRT64 el enlace falla (\texttt{cannot find -lasan} y \texttt{-lubsan}); Valgrind no existe en Windows. La evidencia est\'a en \texttt{evidencia/sanitizers\_antes.txt}. La herramienta din\'amica usada es gcov con gcovr, porque instrumenta el binario y mide la ejecuci\'on real de las pruebas.
+
+\begin{center}
+\scriptsize
+\begin{tabular}{|p{4.2cm}|p{5.2cm}|p{5.2cm}|}
+\hline
+M\'etrica & Antes & Despu\'es \\
+\hline
+\texttt{SimularPartido} & 66 l\'ineas, CCN 15, longitud 99 & 20 l\'ineas, CCN 4, longitud 26 \\
+\hline
+\texttt{main} & 66 l\'ineas, CCN 12, longitud 100 & 66 l\'ineas, CCN 12, longitud 82 \\
+\hline
+CCN media & 5,2; dos funciones sobre el umbral & 3,4; s\'olo \texttt{main} sigue encima \\
+\hline
+cppcheck & 4 campos sin inicializar y una referencia & 4 campos sin inicializar \\
+\hline
+L\'ineas cubiertas & 144/203 = 70\,\% & 146/149 = 98\,\% \\
+\hline
+Ramas cubiertas & 170/418 = 40\,\% & 135/216 = 62\,\% \\
+\hline
+\end{tabular}
+\end{center}
+
+La cobertura sube, en parte, porque desaparecieron ramas duplicadas (418 a 216), no porque el torneo recorra caminos nuevos. \texttt{main} conserva CCN 12: separar el archivo no parti\'o esa funci\'on.
+
+\section{Control de versiones}
+Repositorio p\'ublico: \url{https://github.com/Manulol1904/simulador-torneo}. Rama principal \texttt{main}. La refactorizaci\'on vivi\'o en \texttt{refactor/mantenimiento-simulador}, con commits at\'omicos (\texttt{refactor: reemplazar n\'umeros m\'agicos\ldots}, \texttt{refactor: extraer SimularTiempo\ldots}, entre otros). La integraci\'on fue un merge \texttt{--no-ff}, commit \texttt{4a4dd66}, mensaje \texttt{merge: integrar refactorizaci\'on del simulador}, con dos padres. El tag \texttt{v1.0-refactor} apunta a ese merge. El grafo est\'a en \texttt{evidencia/git\_log\_graph.txt}.
+
+\section{Pruebas y validaci\'on}
+GoogleTest 1.15.2. Diez pruebas, todas en verde antes y despu\'es: diferencia de goles, victoria, derrota y empate, penales que siguen empatados a cero, formato de fecha \texttt{dd/mm/2006}, desempate de grupos y ganadores de ronda por goles acumulados. El golden master compara la salida completa con semilla 1 contra \texttt{evidencia/salida\_original.txt}. Despu\'es de refactorizar, los dos archivos tienen 7590 bytes y el mismo SHA-256. \texttt{evidencia/diff\_golden\_master.txt} registra \texttt{IDENTICAS=si}.
+
+\section{Bugs detectados y trabajo futuro}
+No se corrigieron dentro de la refactorizaci\'on. Quedan para una rama \texttt{fix/} con pruebas nuevas: \texttt{ObtenerFecha} solo cambia de mes en enero y febrero; el ganador de una llave se decide por goles acumulados del torneo; el tercer puesto usa dos ganadores de cuartos y no a los perdedores de las semifinales; los penales se suman al marcador y pueden empatar; las estad\'isticas de grupos se arrastran a la eliminatoria; \texttt{iss >> nombre} corta los nombres con espacio. \texttt{main} sigue siendo la funci\'on m\'as compleja.
+
+\section{Reflexi\'on}
+El cambio reduce el costo de un arreglo local. Un ajuste de la pr\'orroga o de los penales ya no obliga a leer un solo bloque de cien l\'ineas, y el golden master avisa si la salida del torneo se mueve. Eso baja el riesgo de una falla nueva al mantener el c\'odigo. El l\'imite es el que las pruebas fijan el comportamiento actual, incluidos los bugs: una mejora futura, por ejemplo cobrar la inscripci\'on con una pasarela de pagos, no deber\'ia colarse en \texttt{SimularPartido}. Tendr\'ia un m\'odulo propio y pruebas propias. Hoy \texttt{main} y la fecha \texttt{static} siguen acoplando el calendario al orden de las llamadas, as\'i que ese cambio todav\'ia exige cuidado. La sostenibilidad mejor\'o en la simulaci\'on del partido; la deuda que queda est\'a localizada y escrita.
+
+\section{Contraste con la r\'ubrica}
+\begin{center}
+\scriptsize
+\begin{tabular}{|p{2.2cm}|p{12.4cm}|}
+\hline
+Criterio & D\'onde se evidencia \\
+\hline
+C1 Diagn\'ostico & Secci\'on 2 y \texttt{evidencia/diagnostico\_smells.txt}. Cinco smells con cppcheck, clang-tidy y lizard. \\
+\hline
+C2 Refactorizaci\'on & Secci\'on 3. Cinco t\'ecnicas, antes y despu\'es. El golden master no cambi\'o. \\
+\hline
+C3 Herramientas & Secci\'on 4. Est\'atica: cppcheck. Din\'amica: gcov/gcovr, porque ASan no enlaza en este MSYS2. \\
+\hline
+C4 Git & Secci\'on 5. Rama \texttt{refactor/mantenimiento-simulador}, commits at\'omicos, merge \texttt{4a4dd66} y tag \texttt{v1.0-refactor}. \\
+\hline
+C5 Pruebas & Secci\'on 6. Diez pruebas en verde y diff vac\'io del golden master. \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}

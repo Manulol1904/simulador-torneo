@@ -29,3 +29,10 @@ runtime-data/
 # IDE
 .vs/
 .vscode/
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz

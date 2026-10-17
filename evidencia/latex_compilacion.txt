@@ -1,0 +1,8 @@
+Compilacion del informe - Fase 8
+Fecha: 2026-10-17
+Motor: MiKTeX-pdfTeX 4.23 (MiKTeX 25.12)
+Comando: pdflatex -interaction=nonstopmode -halt-on-error informe.tex
+Salida: informe/informe.pdf
+Paginas: 3
+Limite de la actividad: 8
+LATEX_EXIT=0

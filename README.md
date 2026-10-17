@@ -74,3 +74,5 @@ AddressSanitizer y UBSan no enlazan en este MSYS2: faltan `libasan` y `libubsan`
 - Historial: `git_log_graph.txt`
 
 Los bugs de comportamiento (fecha a partir de marzo, ganador por goles acumulados, tercer puesto, penales que pueden empatar, nombres con espacio) están documentados y no se corrigieron en la refactorización.
+
+Informe técnico: [informe/informe.pdf](informe/informe.pdf) (3 páginas).
