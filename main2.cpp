@@ -182,14 +182,14 @@ std::vector<Equipo> ObtenerGanadoresRonda(const std::vector<Equipo>& equipos) {
     return ganadores;
 }
 
-bool CompararClasificacionGrupo(const Equipo& a, const Equipo& b) {
-    if (a.puntos == b.puntos) {
-        if (CalcularDiferenciaGoles(a) == CalcularDiferenciaGoles(b)) {
-            return a.goles_a_favor > b.goles_a_favor;
+bool CompararClasificacionGrupo(const Equipo& equipo_a, const Equipo& equipo_b) {
+    if (equipo_a.puntos == equipo_b.puntos) {
+        if (CalcularDiferenciaGoles(equipo_a) == CalcularDiferenciaGoles(equipo_b)) {
+            return equipo_a.goles_a_favor > equipo_b.goles_a_favor;
         }
-        return CalcularDiferenciaGoles(a) > CalcularDiferenciaGoles(b);
+        return CalcularDiferenciaGoles(equipo_a) > CalcularDiferenciaGoles(equipo_b);
     }
-    return a.puntos > b.puntos;
+    return equipo_a.puntos > equipo_b.puntos;
 }
 
 int main() {
@@ -197,31 +197,31 @@ int main() {
     std::srand(kSemilla);
 
     // Ruta al archivo de equipos (ajusta la ruta según la ubicación de tu archivo)
-    std::string archivoEquipos = "desktop/proyecto c++/equipos2.txt";
+    const std::string archivo_equipos = "desktop/proyecto c++/equipos2.txt";
 
     // Crear un vector de objetos Equipo
     std::vector<Equipo> equipos;
 
     // Cargar los nombres de los equipos desde un archivo
-    std::ifstream inputFile(archivoEquipos);
-    if (inputFile.is_open()) {
-        std::string line;
-        while (std::getline(inputFile, line)) {
-            std::istringstream iss(line);
+    std::ifstream archivo(archivo_equipos);
+    if (archivo.is_open()) {
+        std::string linea;
+        while (std::getline(archivo, linea)) {
+            std::istringstream flujo(linea);
             std::string nombre;
             double probabilidad_gol = 0.0;
-            iss >> nombre >> probabilidad_gol;
+            flujo >> nombre >> probabilidad_gol;
             equipos.push_back({nombre, 0, 0, 0, probabilidad_gol, "", ""});
         }
-        inputFile.close();
+        archivo.close();
     } else {
         std::cerr << "No se pudo abrir el archivo de equipos." << std::endl;
         return 1;
     }
 
     // Mezclar aleatoriamente el orden de los equipos
-    std::mt19937 gen(kSemilla);
-    std::shuffle(equipos.begin(), equipos.end(), gen);
+    std::mt19937 generador_sorteo(kSemilla);
+    std::shuffle(equipos.begin(), equipos.end(), generador_sorteo);
 
     // Dividir los equipos en 8 grupos de 4 equipos cada uno
     std::vector<std::vector<Equipo>> grupos(kCantidadGrupos);
@@ -250,44 +250,44 @@ int main() {
     for (int i = 0; i < kCantidadGrupos; i++) {
         std::cout << "Clasificados del Grupo " << (i + 1) << ":" << std::endl;
         for (int j = 0; j < kEquiposPorGrupo; j++) {
-            Equipo& equipo = grupos[i][j];
-            int diferenciaGoles = CalcularDiferenciaGoles(equipo);
-            std::cout << "Equipo: " << equipo.nombre << " - Puntos: " << equipo.puntos << " GA: " << equipo.goles_a_favor << " GC: " << equipo.goles_en_contra << " Dif. Goles: " << diferenciaGoles;
+            const Equipo& equipo = grupos[i][j];
+            const int diferencia_goles = CalcularDiferenciaGoles(equipo);
+            std::cout << "Equipo: " << equipo.nombre << " - Puntos: " << equipo.puntos << " GA: " << equipo.goles_a_favor << " GC: " << equipo.goles_en_contra << " Dif. Goles: " << diferencia_goles;
             std::cout << std::endl;
         }
         std::cout << "------------------------" << std::endl;
     }
 
     // Clasificación a la siguiente fase
-    std::vector<Equipo> equiposClasificados;
+    std::vector<Equipo> equipos_clasificados;
 
     for (int i = 0; i < kCantidadGrupos; i++) {
-        equiposClasificados.push_back(grupos[i][kIndicePrimero]);
-        equiposClasificados.push_back(grupos[i][kIndiceSegundo]);
+        equipos_clasificados.push_back(grupos[i][kIndicePrimero]);
+        equipos_clasificados.push_back(grupos[i][kIndiceSegundo]);
     }
 
     // Fase de Eliminación Directa
     std::cout << "------ Fase de Eliminación Directa ------" << std::endl;
 
     // Octavos de Final
-    SimularRondaEliminacionDirecta(equiposClasificados);
-    std::vector<Equipo> ganadoresOctavos = ObtenerGanadoresRonda(equiposClasificados);
+    SimularRondaEliminacionDirecta(equipos_clasificados);
+    std::vector<Equipo> ganadores_octavos = ObtenerGanadoresRonda(equipos_clasificados);
 
     // Cuartos de Final
-    SimularRondaEliminacionDirecta(ganadoresOctavos);
-    std::vector<Equipo> ganadoresCuartos = ObtenerGanadoresRonda(ganadoresOctavos);
+    SimularRondaEliminacionDirecta(ganadores_octavos);
+    std::vector<Equipo> ganadores_cuartos = ObtenerGanadoresRonda(ganadores_octavos);
 
     // Semifinales
-    SimularRondaEliminacionDirecta(ganadoresCuartos);
-    std::vector<Equipo> ganadoresSemifinales = ObtenerGanadoresRonda(ganadoresCuartos);
+    SimularRondaEliminacionDirecta(ganadores_cuartos);
+    std::vector<Equipo> ganadores_semifinales = ObtenerGanadoresRonda(ganadores_cuartos);
 
     // Tercer y Cuarto Puesto
     std::cout << "------ Partido por el Tercer y Cuarto Puesto ------" << std::endl;
-    SimularPartido(ganadoresCuartos[kIndiceSegundo], ganadoresCuartos[kIndicePrimero], true);
+    SimularPartido(ganadores_cuartos[kIndiceSegundo], ganadores_cuartos[kIndicePrimero], true);
 
     // Final
     std::cout << "------ Final ------" << std::endl;
-    SimularPartido(ganadoresSemifinales[kIndicePrimero], ganadoresSemifinales[kIndiceSegundo], true);
+    SimularPartido(ganadores_semifinales[kIndicePrimero], ganadores_semifinales[kIndiceSegundo], true);
 
     return 0;
 }
