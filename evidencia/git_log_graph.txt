@@ -1,0 +1,21 @@
+*   4a4dd66 (HEAD -> main, tag: v1.0-refactor) merge: integrar refactorización del simulador
+|\  
+| * 2ee6809 (origin/refactor/mantenimiento-simulador, refactor/mantenimiento-simulador) test: registrar la validacion posterior a la refactorizacion
+| * 2f0ab4a test: registrar que las pruebas siguieron en verde en la rama de refactor
+| * 34c00ee refactor: separar Partido y los archivos del simulador
+| * 1b700dc refactor: renombrar variables al mismo estilo snake_case
+| * 6a3f279 refactor: extraer SimularTiempo para eliminar bucles duplicados
+| * 0d139cd refactor: extraer AleatorioUnitario para quitar la expresion repetida
+| * a59a748 refactor: reemplazar números mágicos por constantes con nombre
+|/  
+* af54dc2 (origin/main) test: registrar la cobertura dinamica previa a la refactorizacion
+* bee549d docs: registrar el diagnostico estatico previo a la refactorizacion
+* 07cdfad test: agregar pruebas de caracterización con GoogleTest
+* cd5b638 test: hacer determinista el generador para pruebas
+* 1e37427 docs: registrar la URL del repositorio publico
+* a849b72 docs: actualizar git log de la fase 0B
+* df4565f docs: guardar git log de la fase 0B
+* bdf3d40 docs: registrar evidencia de entorno, compilacion y ejecucion
+* 1083c30 build: agregar CMakeLists.txt para compilar en C++17
+* 43a78ea fix: agregar include <iomanip> faltante para compilar
+* 552901a chore: importar código original del simulador de torneo
